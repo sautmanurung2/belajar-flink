@@ -1,0 +1,5 @@
+dcore_flink/event/DemoEvent.class
+dcore_flink/flink/KafkaConnectorFactory.class
+dcore_flink/event/DemoEvent$DemoEventBuilder.class
+dcore_flink/flink/EventProcessor.class
+dcore_flink/flink/NameTransformerFunction.class
