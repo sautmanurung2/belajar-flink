@@ -7,7 +7,7 @@ services:
     networks: 
       - kafka
     ports:
-      - "8081:8081"  # Exposes Flink's web dashboard on the default port
+      - "8081:8081"
     command: jobmanager
     environment:
       - |
@@ -16,7 +16,7 @@ services:
         jobmanager.rpc.port: 6123
         jobmanager.memory.process.size: 1600m
     volumes:
-      - jobmanager-data:/opt/flink/log  # Mounts a volume for logs
+      - jobmanager-data:/opt/flink/log
 
   taskmanager:
     image: flink:latest
@@ -27,7 +27,7 @@ services:
     networks:
       - kafka
     command: taskmanager
-    scale: 2  # Increase the number of TaskManagers
+    scale: 2
     environment:
       - |
         FLINK_PROPERTIES= 
@@ -35,7 +35,7 @@ services:
         taskmanager.numberOfTaskSlots: 2
         taskmanager.memory.process.size: 1728m
     volumes:
-      - taskmanager-data:/opt/flink/log  # Mounts a volume for logs
+      - taskmanager-data:/opt/flink/log
 
   kafka-ui:
     container_name: kafka-ui
@@ -108,13 +108,29 @@ services:
       start_period: 30s
     restart: unless-stopped
 
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    networks:
+      - kafka
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql  # Mounts the init.sql file
+      - ./sql/entrypoint.sh:/docker-entrypoint-initdb.d/entrypoint.sh  # Mounts the entrypoint.sh file
+    entrypoint: ["/docker-entrypoint-initdb.d/entrypoint.sh"]  # Executes the entrypoint.sh file
+
 networks:
   kafka:
 
 volumes:
-  jobmanager-data:  # Declares a volume for the JobManager logs
-  taskmanager-data:  # Declares a volume for the TaskManager logs
+  jobmanager-data:
+  taskmanager-data:
   kafka_0_data:
     driver: local
   kafka_1_data:
     driver: local
+  postgres_data:  # Declares a volume for PostgreSQL data
