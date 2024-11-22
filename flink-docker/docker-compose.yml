@@ -119,9 +119,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql  # Mounts the init.sql file
-      - ./sql/entrypoint.sh:/docker-entrypoint-initdb.d/entrypoint.sh  # Mounts the entrypoint.sh file
-    entrypoint: ["/docker-entrypoint-initdb.d/entrypoint.sh"]  # Executes the entrypoint.sh file
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 networks:
   kafka:
@@ -133,4 +131,4 @@ volumes:
     driver: local
   kafka_1_data:
     driver: local
-  postgres_data:  # Declares a volume for PostgreSQL data
+  postgres_data:

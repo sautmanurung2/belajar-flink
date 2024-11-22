@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+package dcore_database.models.proto;
+
+option java_multiple_files = true;
+option java_package = "proto";
+option java_outer_classname = "EventStoreProto";
+message EventStore {
+   string event_store_id = 1;
+   string event_name = 2;
+   string item_number = 3;
+   string item_type = 4;
+   int32 user_id = 5;
+   string user_login = 6;
+   int32 node_id = 7;
+   string node_code = 8;
+   google.protobuf.Timestamp created_at = 9;
+}
