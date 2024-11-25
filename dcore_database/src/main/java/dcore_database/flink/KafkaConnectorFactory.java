@@ -21,14 +21,4 @@ public class KafkaConnectorFactory {
                 .setTopics(sourceTopic)
                 .build();
     }
-
-    public KafkaSink<EventStore> kafkaSink(String sinkTopic) {
-        return KafkaSink.<EventStore>builder()
-                .setBootstrapServers(bootstrapServers)
-                .setRecordSerializer(KafkaRecordSerializationSchema.<EventStore>builder()
-                                .setValueSerializationSchema(new EventStoreSerializer())
-                                .setTopic(sinkTopic)
-                                .build())
-                .build();
-    }
 }

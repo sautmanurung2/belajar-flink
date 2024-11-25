@@ -16,7 +16,6 @@ public class EventProcessor {
     private static final Logger logger = LoggerFactory.getLogger(EventProcessor.class);
     private static final String BOOTSTRAP_SERVERS = "kafka-0:9092";
     private static final String SOURCE_TOPIC = "kafka-testing-producer";
-    private static final String SINK_TOPIC = "kafka-testing-consumer";
 
     public static void main(String[] args) {
         String bootstrapServers = BOOTSTRAP_SERVERS;
