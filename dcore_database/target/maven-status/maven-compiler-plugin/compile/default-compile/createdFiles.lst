@@ -1,0 +1,9 @@
+dcore_database/proto/EventStore$1.class
+dcore_database/proto/EventStoreOrBuilder.class
+dcore_database/tools/EventStoreSerializer.class
+dcore_database/proto/EventStoreProto.class
+dcore_database/flink/KafkaConnectorFactory.class
+dcore_database/proto/EventStore$Builder.class
+dcore_database/tools/EventStoreDeserializer.class
+dcore_database/flink/EventProcessor.class
+dcore_database/proto/EventStore.class

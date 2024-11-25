@@ -4,7 +4,7 @@ import "google/protobuf/timestamp.proto";
 package dcore_database.models.proto;
 
 option java_multiple_files = true;
-option java_package = "proto";
+option java_package = "dcore_database.proto";
 option java_outer_classname = "EventStoreProto";
 message EventStore {
    string event_store_id = 1;
