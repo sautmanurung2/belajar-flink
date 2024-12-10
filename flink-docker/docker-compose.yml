@@ -15,6 +15,7 @@ services:
         jobmanager.rpc.address: jobmanager
         jobmanager.rpc.port: 6123
         jobmanager.memory.process.size: 1600m
+        taskmanager.jvm-options: -Dfile.encoding=UTF-8 --add-opens java.base/java.util=ALL-UNNAMED
     volumes:
       - jobmanager-data:/opt/flink/log
 
@@ -27,13 +28,12 @@ services:
     networks:
       - kafka
     command: taskmanager
-    scale: 2
     environment:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
-        taskmanager.numberOfTaskSlots: 2
-        taskmanager.memory.process.size: 1728m
+        taskmanager.numberOfTaskSlots: 4
+        taskmanager.memory.process.size: 5g
     volumes:
       - taskmanager-data:/opt/flink/log
 
